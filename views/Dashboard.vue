@@ -1119,42 +1119,6 @@ const updateInfraResourceList: DashboardUpdateInfraResourceDataType[] = [
     updateNumber: '13,200',
   },
 ];
-
-const vmWareListValue = ref('VMware');
-const vmWareListOptions = ref<SelectProps['options']>([
-  {
-    value: 'VMware',
-    label: 'VMware',
-  },
-  {
-    value: 'VMware2',
-    label: 'VMware2',
-  },
-]);
-
-const violaListValue = ref('Viola');
-const violaListOptions = ref<SelectProps['options']>([
-  {
-    value: 'Viola',
-    label: 'Viola',
-  },
-  {
-    value: 'Viola2',
-    label: 'Viola2',
-  },
-]);
-
-const awsListValue = ref('AWS');
-const awsListOptions = ref<SelectProps['options']>([
-  {
-    value: 'AWS',
-    label: 'AWS',
-  },
-  {
-    value: 'AWS2',
-    label: 'AWS2',
-  },
-]);
 </script>
 
 <style lang="scss" scoped></style>
