@@ -1,5 +1,5 @@
 <template>
-  <div class="contents dashboard-wrapper maestro-dashboard-wrapper">
+  <div class="contents dashboard-wrapper">
     <a-space class="space-block" direction="vertical" :size="16">
       <a-row :gutter="16" class="dashboard-container">
         <a-col :xl="6" :lg="24" :md="24" :sm="24" :xs="24" class="col">
@@ -24,163 +24,7 @@
         </a-col>
         <a-col :xl="12" :lg="24" :md="24" :sm="24" :xs="24" class="col">
           <a-card title="업데이트 된 리소스" class="update-resource-table">
-            <a-tabs v-model:activeKey="updateTabActiveKey">
-              <a-tab-pane key="1" tab="Contrabass">
-                <DashboardUpdateInfraResource
-                  :infra-resource-current-list="updateInfraResourceList"
-                />
-                <a-table
-                  :columns="updateResourceColumns"
-                  :data-source="updateResourceData"
-                  :pagination="false"
-                  :bordered="false"
-                >
-                  <template #bodyCell="{ column, text, record }">
-                    <template v-if="column.dataIndex === 'subject'">
-                      <template v-if="record.statusType === 'create'">
-                        <span class="status create"
-                          ><a-tag color="success">생성</a-tag>{{ text }}</span
-                        ></template
-                      >
-                      <template v-if="record.statusType === 'stop'">
-                        <span class="status stop"
-                          ><a-tag color="warning">중지</a-tag>{{ text }}</span
-                        ></template
-                      >
-                      <template v-if="record.statusType === 'delete'">
-                        <span class="status delete"
-                          ><a-tag color="error">중지</a-tag>{{ text }}</span
-                        ></template
-                      >
-                    </template>
-                  </template>
-                </a-table>
-              </a-tab-pane>
-              <a-tab-pane key="2" tab="Doublebass">
-                <DashboardUpdateInfraResource
-                  :infra-resource-current-list="updateInfraResourceList"
-                />
-                <a-table
-                  :columns="updateResourceColumns"
-                  :data-source="updateResourceData"
-                  :pagination="false"
-                  :bordered="false"
-                >
-                  <template #bodyCell="{ column, text, record }">
-                    <template v-if="column.dataIndex === 'subject'">
-                      <template v-if="record.statusType === 'create'">
-                        <span class="status create"
-                          ><a-tag color="success">생성</a-tag>{{ text }}</span
-                        ></template
-                      >
-                      <template v-if="record.statusType === 'stop'">
-                        <span class="status stop"
-                          ><a-tag color="warning">중지</a-tag>{{ text }}</span
-                        ></template
-                      >
-                      <template v-if="record.statusType === 'delete'">
-                        <span class="status delete"
-                          ><a-tag color="error">중지</a-tag>{{ text }}</span
-                        ></template
-                      >
-                    </template>
-                  </template>
-                </a-table>
-              </a-tab-pane>
-              <a-tab-pane key="3" tab="Viola">
-                <DashboardUpdateInfraResource
-                  :infra-resource-current-list="updateInfraResourceList"
-                />
-                <a-table
-                  :columns="updateResourceColumns"
-                  :data-source="updateResourceData"
-                  :pagination="false"
-                  :bordered="false"
-                >
-                  <template #bodyCell="{ column, text, record }">
-                    <template v-if="column.dataIndex === 'subject'">
-                      <template v-if="record.statusType === 'create'">
-                        <span class="status create"
-                          ><a-tag color="success">생성</a-tag>{{ text }}</span
-                        ></template
-                      >
-                      <template v-if="record.statusType === 'stop'">
-                        <span class="status stop"
-                          ><a-tag color="warning">중지</a-tag>{{ text }}</span
-                        ></template
-                      >
-                      <template v-if="record.statusType === 'delete'">
-                        <span class="status delete"
-                          ><a-tag color="error">중지</a-tag>{{ text }}</span
-                        ></template
-                      >
-                    </template>
-                  </template>
-                </a-table>
-              </a-tab-pane>
-              <a-tab-pane key="4" tab="AWS">
-                <DashboardUpdateInfraResource
-                  :infra-resource-current-list="updateInfraResourceList"
-                />
-                <a-table
-                  :columns="updateResourceColumns"
-                  :data-source="updateResourceData"
-                  :pagination="false"
-                  :bordered="false"
-                >
-                  <template #bodyCell="{ column, text, record }">
-                    <template v-if="column.dataIndex === 'subject'">
-                      <template v-if="record.statusType === 'create'">
-                        <span class="status create"
-                          ><a-tag color="success">생성</a-tag>{{ text }}</span
-                        ></template
-                      >
-                      <template v-if="record.statusType === 'stop'">
-                        <span class="status stop"
-                          ><a-tag color="warning">중지</a-tag>{{ text }}</span
-                        ></template
-                      >
-                      <template v-if="record.statusType === 'delete'">
-                        <span class="status delete"
-                          ><a-tag color="error">삭제</a-tag>{{ text }}</span
-                        ></template
-                      >
-                    </template>
-                  </template>
-                </a-table>
-              </a-tab-pane>
-              <a-tab-pane key="6" tab="Kubernetes">
-                <DashboardUpdateInfraResource
-                  :infra-resource-current-list="updateInfraResourceList"
-                />
-                <a-table
-                  :columns="updateResourceColumns"
-                  :data-source="updateResourceData"
-                  :pagination="false"
-                  :bordered="false"
-                >
-                  <template #bodyCell="{ column, text, record }">
-                    <template v-if="column.dataIndex === 'subject'">
-                      <template v-if="record.statusType === 'create'">
-                        <span class="status create"
-                          ><a-tag color="success">생성</a-tag>{{ text }}</span
-                        ></template
-                      >
-                      <template v-if="record.statusType === 'stop'">
-                        <span class="status stop"
-                          ><a-tag color="warning">중지</a-tag>{{ text }}</span
-                        ></template
-                      >
-                      <template v-if="record.statusType === 'delete'">
-                        <span class="status delete"
-                          ><a-tag color="error">중지</a-tag>{{ text }}</span
-                        ></template
-                      >
-                    </template>
-                  </template>
-                </a-table>
-              </a-tab-pane>
-            </a-tabs>
+            <DashboardUpdateInfraResource :infra-resource-current-list="updateInfraResourceList" />
           </a-card>
         </a-col>
       </a-row>
@@ -242,224 +86,6 @@
           </a-card>
         </a-col>
       </a-row>
-      <a-row :gutter="16" class="dashboard-container">
-        <a-col :span="12">
-          <a-card title="Openstack">
-            <ProcuctUseBarChart :bar-data="BarOpenstackChartData" />
-          </a-card>
-        </a-col>
-        <a-col :span="12">
-          <a-card title="VMware">
-<!--            <a-select-->
-<!--              v-model:value="vmWareListValue"-->
-<!--              label-in-value-->
-<!--              style="width: 100%"-->
-<!--              :options="vmWareListOptions"-->
-<!--            ></a-select>-->
-            <ProcuctUseBarChart :bar-data="BarVmWareChartData" />
-          </a-card>
-        </a-col>
-      </a-row>
-      <a-row :gutter="16" class="dashboard-container">
-        <a-col :span="12">
-          <a-card title="Viola">
-<!--            <a-select-->
-<!--              v-model:value="violaListValue"-->
-<!--              label-in-value-->
-<!--              style="width: 100%"-->
-<!--              :options="violaListOptions"-->
-<!--            ></a-select>-->
-            <ProcuctUseBarChart :bar-data="BarViolaChartData" />
-          </a-card>
-        </a-col>
-        <a-col :span="12">
-          <a-card title="AWS">
-<!--            <a-select-->
-<!--              v-model:value="awsListValue"-->
-<!--              label-in-value-->
-<!--              style="width: 100%"-->
-<!--              :options="awsListOptions"-->
-<!--            ></a-select>-->
-            <ProcuctUseBarChart :bar-data="awsChartData" />
-          </a-card>
-        </a-col>
-      </a-row>
-      <a-row class="dashboard-container">
-        <a-col :span="24">
-          <a-card title="최근 작업 현황" class="latest-working-table">
-            <a-tabs v-model:activeKey="tabActiveKey">
-              <a-tab-pane key="1" tab="전체보기">
-                <a-table
-                  :columns="latestWorkingColumns"
-                  :data-source="latestWorkingData"
-                  :pagination="false"
-                  :bordered="false"
-                >
-                  <template #bodyCell="{ column, text, record }">
-                    <template v-if="column.dataIndex === 'subject'">
-                      <template v-if="record.statusType === 'create'">
-                        <span class="status create"
-                          ><a-tag color="success">생성</a-tag>{{ text }}</span
-                        ></template
-                      >
-                      <template v-if="record.statusType === 'stop'">
-                        <span class="status stop"
-                          ><a-tag color="warning">중지</a-tag>{{ text }}</span
-                        ></template
-                      >
-                      <template v-if="record.statusType === 'delete'">
-                        <span class="status delete"
-                          ><a-tag color="error">중지</a-tag>{{ text }}</span
-                        ></template
-                      >
-                    </template>
-                  </template>
-                </a-table>
-              </a-tab-pane>
-              <a-tab-pane key="2" tab="Contrabass">
-                <a-table
-                  :columns="latestWorkingColumns"
-                  :data-source="latestWorkingData"
-                  :pagination="false"
-                  :bordered="false"
-                >
-                  <template #bodyCell="{ column, text, record }">
-                    <template v-if="column.dataIndex === 'subject'">
-                      <template v-if="record.statusType === 'create'">
-                        <span class="status create"
-                          ><a-tag color="success">생성</a-tag>{{ text }}</span
-                        ></template
-                      >
-                      <template v-if="record.statusType === 'stop'">
-                        <span class="status stop"
-                          ><a-tag color="warning">중지</a-tag>{{ text }}</span
-                        ></template
-                      >
-                      <template v-if="record.statusType === 'delete'">
-                        <span class="status delete"
-                          ><a-tag color="error">중지</a-tag>{{ text }}</span
-                        ></template
-                      >
-                    </template>
-                  </template>
-                </a-table>
-              </a-tab-pane>
-              <a-tab-pane key="3" tab="Doublebass">
-                <a-table
-                  :columns="latestWorkingColumns"
-                  :data-source="latestWorkingData"
-                  :pagination="false"
-                  :bordered="false"
-                >
-                  <template #bodyCell="{ column, text, record }">
-                    <template v-if="column.dataIndex === 'subject'">
-                      <template v-if="record.statusType === 'create'">
-                        <span class="status create"
-                          ><a-tag color="success">생성</a-tag>{{ text }}</span
-                        ></template
-                      >
-                      <template v-if="record.statusType === 'stop'">
-                        <span class="status stop"
-                          ><a-tag color="warning">중지</a-tag>{{ text }}</span
-                        ></template
-                      >
-                      <template v-if="record.statusType === 'delete'">
-                        <span class="status delete"
-                          ><a-tag color="error">중지</a-tag>{{ text }}</span
-                        ></template
-                      >
-                    </template>
-                  </template>
-                </a-table>
-              </a-tab-pane>
-              <a-tab-pane key="4" tab="Viola">
-                <a-table
-                  :columns="latestWorkingColumns"
-                  :data-source="latestWorkingData"
-                  :pagination="false"
-                  :bordered="false"
-                >
-                  <template #bodyCell="{ column, text, record }">
-                    <template v-if="column.dataIndex === 'subject'">
-                      <template v-if="record.statusType === 'create'">
-                        <span class="status create"
-                          ><a-tag color="success">생성</a-tag>{{ text }}</span
-                        ></template
-                      >
-                      <template v-if="record.statusType === 'stop'">
-                        <span class="status stop"
-                          ><a-tag color="warning">중지</a-tag>{{ text }}</span
-                        ></template
-                      >
-                      <template v-if="record.statusType === 'delete'">
-                        <span class="status delete"
-                          ><a-tag color="error">중지</a-tag>{{ text }}</span
-                        ></template
-                      >
-                    </template>
-                  </template>
-                </a-table>
-              </a-tab-pane>
-              <a-tab-pane key="5" tab="AWS">
-                <a-table
-                  :columns="latestWorkingColumns"
-                  :data-source="latestWorkingData"
-                  :pagination="false"
-                  :bordered="false"
-                >
-                  <template #bodyCell="{ column, text, record }">
-                    <template v-if="column.dataIndex === 'subject'">
-                      <template v-if="record.statusType === 'create'">
-                        <span class="status create"
-                          ><a-tag color="success">생성</a-tag>{{ text }}</span
-                        ></template
-                      >
-                      <template v-if="record.statusType === 'stop'">
-                        <span class="status stop"
-                          ><a-tag color="warning">중지</a-tag>{{ text }}</span
-                        ></template
-                      >
-                      <template v-if="record.statusType === 'delete'">
-                        <span class="status delete"
-                          ><a-tag color="error">삭제</a-tag>{{ text }}</span
-                        ></template
-                      >
-                    </template>
-                  </template>
-                </a-table>
-              </a-tab-pane>
-              <a-tab-pane key="6" tab="Kubernetes">
-                <a-table
-                  :columns="latestWorkingColumns"
-                  :data-source="latestWorkingData"
-                  :pagination="false"
-                  :bordered="false"
-                >
-                  <template #bodyCell="{ column, text, record }">
-                    <template v-if="column.dataIndex === 'subject'">
-                      <template v-if="record.statusType === 'create'">
-                        <span class="status create"
-                          ><a-tag color="success">생성</a-tag>{{ text }}</span
-                        ></template
-                      >
-                      <template v-if="record.statusType === 'stop'">
-                        <span class="status stop"
-                          ><a-tag color="warning">중지</a-tag>{{ text }}</span
-                        ></template
-                      >
-                      <template v-if="record.statusType === 'delete'">
-                        <span class="status delete"
-                          ><a-tag color="error">중지</a-tag>{{ text }}</span
-                        ></template
-                      >
-                    </template>
-                  </template>
-                </a-table>
-              </a-tab-pane>
-            </a-tabs>
-          </a-card>
-        </a-col>
-      </a-row>
     </a-space>
   </div>
 </template>
@@ -511,50 +137,7 @@ const lineProviderData = ref<LineDataType>({
   },
 });
 
-const BarOrganizationResourceUseChartData = {
-  data: {
-    labels: ['instance', 'network', 'volume', 'Pod'],
-    datasets: [
-      {
-        label: '조직 1',
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: '#4F6EBB',
-      },
-      {
-        label: '조직 2',
-        data: [7, 11, 5, 8, 3, 7],
-        backgroundColor: '#ABC0EE',
-      },
-      {
-        label: '조직 3',
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: '#E9848A',
-      },
-      {
-        label: '조직 4',
-        data: [7, 11, 5, 8, 3, 7],
-        backgroundColor: '#FFC75A ',
-      },
-      {
-        label: '조직 5',
-        data: [7, 11, 5, 8, 3, 7],
-        backgroundColor: '#A8C35B',
-      },
-      {
-        label: '조직 6',
-        data: [7, 11, 5, 8, 3, 7],
-        backgroundColor: '#6C948A',
-      },
-      {
-        label: '조직 7',
-        data: [7, 11, 5, 8, 3, 7],
-        backgroundColor: '#9DD7C9',
-      },
-    ],
-  }
-};
-
-const BarOpenstackChartData = ref<BarDataType>({
+const BarChartData1 = ref<BarDataType>({
   data: {
     labels: ['VM', 'Subnet', 'Floating IP', 'Load Balancer', 'Volume'],
     datasets: [
@@ -582,7 +165,7 @@ const BarOpenstackChartData = ref<BarDataType>({
   },
 });
 
-const BarVmWareChartData = ref<BarDataType>({
+const BarChartData2 = ref<BarDataType>({
   data: {
     labels: ['VM', 'Subnet', 'Datastore'],
     datasets: [
@@ -608,63 +191,6 @@ const BarVmWareChartData = ref<BarDataType>({
     ],
   },
 });
-
-const BarViolaChartData = ref<BarDataType>({
-  data: {
-    labels: ['Pod', 'Service', 'Ingress', 'Node'],
-    datasets: [
-      {
-        label: 'Cluster 1',
-        backgroundColor: '#4F6EBB',
-        data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
-      },
-      {
-        data: [50, 80, 20, 100, 29, 100, 20],
-        label: 'Cluster 2',
-        backgroundColor: '#A8C35B',
-        // borderColor: '#A8C35B',
-        // fill: false,
-        // pointBorderWidth: 0,
-        // borderWidth: 1,
-        data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
-      },
-      {
-        label: 'Cluster 3',
-        backgroundColor: '#FFC75A',
-        data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
-      },
-    ],
-  },
-});
-
-const awsChartData = ref<BarDataType>({
-  data: {
-    labels: ['EC2', 'EBS', 'S3', 'IAM', 'VPC', 'EKS'],
-    datasets: [
-      {
-        label: 'Account 1',
-        backgroundColor: '#4F6EBB',
-        data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
-      },
-      {
-        data: [50, 80, 20, 100, 29, 100, 20],
-        label: 'Account 2',
-        backgroundColor: '#A8C35B',
-        // borderColor: '#A8C35B',
-        // fill: false,
-        // pointBorderWidth: 0,
-        // borderWidth: 1,
-        data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
-      },
-      {
-        label: 'Account 3',
-        backgroundColor: '#FFC75A',
-        data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
-      },
-    ],
-  },
-});
-
 
 interface userCurrentDataType {
   organization?: string;
@@ -763,44 +289,12 @@ const cloudAssetsCurrentData: DashboardCloudAssetsCurrentDataType[] = [
     product: 'aws',
     data: [11],
   },
-  {
-    product: 'kubernetes',
-    data: [11, 33],
-  },
-  {
-    product: 'openshift',
-    data: [22, 0],
-  },
-  {
-    product: 'openstack',
-    data: [11, 66],
-  },
-  {
-    product: 'vmware',
-    data: [44, 11],
-  },
 ];
 
 const rankingData: DashboardRankingDataType[] = [
   {
     name: 'Tomcat',
     currentNumber: 99,
-  },
-  {
-    name: 'NGINX',
-    currentNumber: 86,
-  },
-  {
-    name: 'Tomcat',
-    currentNumber: 45,
-  },
-  {
-    name: 'NGINX',
-    currentNumber: 223,
-  },
-  {
-    name: 'NGINX',
-    currentNumber: 8,
   },
 ];
 
@@ -817,26 +311,6 @@ const applyServiceCurrentData: DashboardApplyServiceCurrentDataType = {
       status: 'wait',
       updateDate: '2023-06-01',
     },
-    {
-      name: 'Input Field Text - Active',
-      status: 'approval',
-      updateDate: '2023-06-01',
-    },
-    {
-      name: 'Input Field Text - Active',
-      status: 'progression',
-      updateDate: '2023-06-01',
-    },
-    {
-      name: 'Input Field Text - Active',
-      status: 'failed',
-      updateDate: '2023-06-01',
-    },
-    {
-      name: 'Input Field Text - Active',
-      status: 'complete',
-      updateDate: '2023-06-01',
-    },
   ],
 };
 
@@ -847,68 +321,6 @@ const cloudServiceUserCurrentData: DashboardCloudServiceUserCurrentDataType[] =
       productList: [
         {
           name: 'aws',
-        },
-        {
-          name: 'kubernetes',
-        },
-        {
-          name: 'openshift',
-        },
-        {
-          name: 'openstack',
-        },
-        {
-          name: 'vmware',
-        },
-      ],
-    },
-    {
-      name: '조직입니당당당',
-      productList: [
-        {
-          name: 'aws',
-        },
-        {
-          name: 'kubernetes',
-        },
-        {
-          name: 'openstack',
-        },
-        {
-          name: 'vmware',
-        },
-      ],
-    },
-    {
-      name: '조직입니당당당',
-      productList: [
-        {
-          name: 'aws',
-        },
-        {
-          name: 'kubernetes',
-        },
-        {
-          name: 'openstack',
-        },
-      ],
-    },
-    {
-      name: '조직입니당당당',
-      productList: [
-        {
-          name: 'aws',
-        },
-      ],
-    },
-    {
-      name: '조직입니당당당',
-      productList: [
-        {
-          name: 'aws',
-        },
-        {
-          name: 'kubernetes',
         },
       ],
     },
@@ -954,168 +366,12 @@ const monthlyBillingData: monthlyBillingDataType[] = [
     rate: '3.5%',
     rateType: 'down',
   },
-  {
-    organization: '조직입니당',
-    month: '11,450,000',
-    rate: '33.5%',
-    rateType: 'up',
-  },
-  {
-    organization: '조직입니당조직입니당조직입니당',
-    month: '11,450,000',
-    rate: '3.5%',
-    rateType: 'down',
-  },
-  {
-    organization: '조직입니당',
-    month: '450,000',
-    rate: '33.5%',
-    rateType: 'up',
-  },
-  {
-    organization: '조직입니당',
-    month: '11,450,000',
-    rate: '3.5%',
-    rateType: 'down',
-  },
-  {
-    organization: '조직입니당',
-    month: '11,450,000',
-    rate: '33.5%',
-    rateType: 'up',
-  },
-  {
-    organization: '조직입니당조직입니당조직입니당',
-    month: '11,450,000',
-    rate: '3.5%',
-    rateType: 'down',
-  },
 ];
 
-interface latestWorkingDataType {
-  subject?: string;
-  userName?: string;
-  updateDate?: string;
-  statusType?: string;
-}
-
-const latestWorkingColumns: TableColumnType<latestWorkingDataType>[] = [
-  {
-    title: '제목',
-    dataIndex: 'subject',
-  },
-  {
-    title: '이름',
-    dataIndex: 'userName',
-    width: '200px',
-    align: 'center',
-  },
-  {
-    title: '날짜',
-    dataIndex: 'updateDate',
-    width: '200px',
-    align: 'center',
-  },
-];
-
-const latestWorkingData: latestWorkingDataType[] = [
-  {
-    subject: 'Input Field Text ',
-    userName: '한희연',
-    updateDate: '2023-06-01 21:12:12',
-    statusType: 'create',
-  },
-  {
-    subject: 'Input Field Text ',
-    userName: '한희연',
-    updateDate: '2023-06-01 21:12:12',
-    statusType: 'stop',
-  },
-  {
-    subject: 'Input Field Text ',
-    userName: '한희연',
-    updateDate: '2023-06-01 21:12:12',
-    statusType: 'delete',
-  },
-  {
-    subject: 'Input Field Text ',
-    userName: '한희연',
-    updateDate: '2023-06-01 21:12:12',
-    statusType: 'create',
-  },
-  {
-    subject: 'Input Field Text ',
-    userName: '한희연',
-    updateDate: '2023-06-01 21:12:12',
-    statusType: 'stop',
-  },
-  {
-    subject: 'Input Field Text ',
-    userName: '한희연',
-    updateDate: '2023-06-01 21:12:12',
-    statusType: 'delete',
-  },
-];
-
-const tabActiveKey = ref('1');
-const updateTabActiveKey = ref('1');
-interface updateResourceDataType {
-  subject?: string;
-  updateDate?: string;
-  statusType?: string;
-}
-
-const updateResourceColumns: TableColumnType<updateResourceDataType>[] = [
-  {
-    title: '제목',
-    dataIndex: 'subject',
-  },
-  {
-    title: '날짜',
-    dataIndex: 'updateDate',
-    width: '150px',
-    align: 'center',
-  },
-];
-
-const updateResourceData: latestWorkingDataType[] = [
-  {
-    subject: 'Input Field Text ',
-    updateDate: '2023-06-01',
-    statusType: 'create',
-  },
-  {
-    subject: 'Input Field Text ',
-    updateDate: '2023-06-01',
-    statusType: 'stop',
-  },
-  {
-    subject: 'Input Field Text ',
-    updateDate: '2023-06-01',
-    statusType: 'delete',
-  },
-  {
-    subject: 'Input Field Text ',
-    updateDate: '2023-06-01',
-    statusType: 'create',
-  },
-];
 
 const updateInfraResourceList: DashboardUpdateInfraResourceDataType[] = [
   {
     name: '인스턴스',
-    updateNumber: '13,200',
-  },
-  {
-    name: '볼륨',
-    updateNumber: '113,200',
-  },
-  {
-    name: '네트워크',
-    updateNumber: '113,200',
-  },
-  {
-    name: '라우터',
     updateNumber: '13,200',
   },
 ];
